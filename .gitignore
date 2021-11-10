@@ -1,3 +1,5 @@
 .idea
 node_modules
 alfredo
+.DS_Store
+client/.DS_Store
