@@ -1,5 +1,8 @@
 .idea
 node_modules
+<<<<<<< HEAD
 alfredo
+=======
+>>>>>>> 49baf169b588a987b9dbcee691c8fd77f56dfb9a
 .DS_Store
 client/.DS_Store
