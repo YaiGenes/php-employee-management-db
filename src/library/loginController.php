@@ -1,14 +1,10 @@
 <?php
-require_once('./loginManager.php');
 session_start();
 
-if (isset($_POST['email']) && !empty($_POST['email']) && isset($_POST['pass']) && !empty($_POST['pass'])) {
+if (isset($_POST['username']) && !empty($_POST['username']) && isset($_POST['pass']) && !empty($_POST['pass'])) {
 
-    $username = $_POST["email"];
+    $username = $_POST["username"];
     $password = $_POST["pass"];
-
-    $_SESSION["username"] = $username;
-    $_SESSION["pass"] = $password;
 }
 
 

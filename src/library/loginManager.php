@@ -1,15 +1,33 @@
 <?php
-
-session_start();
-
-$_SESSION["username"] = $username;
-$_SESSION["pass"] = $password;
+require_once("../sql/dbh.php");
+require_once("./loginController.php");
 
 
-print_r userGet();
+$validationQuery = $db->prepare("
+SELECT `fullname`,
+`password`
+FROM `user`
+WHERE `fullname`= :fullname
+AND `password`= :password");
 
+$validationQuery->execute([
+    'fullname'=>$username,
+    'password'=>$password
+]);
 
+$isSuscribed = $validationQuery->rowCount()?$validationQuery:[];
+$isSuscribed = $validationQuery->rowCount();
 
+echo $isSuscribed;
+if ($isSuscribed) {
+    $_SESSION["info"]="Login process succesful";
+    //$_SESSION["issuscribed"]=true;
+    header('Location: ../dashboard.php');
+}else {
+    header('Location: ../../index.php?error=The user is not suscribed');
+    $_SESSION["info"] = "You are not registered, please SignUp";
+    //$_SESSION["issuscribed"]=false;
+}
 
 // function login($a, $b)
 // {
