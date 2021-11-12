@@ -30,3 +30,39 @@ if ($method == 'GET') {
     header("Content-Type: application/json");
     echo json_encode($output);
 }
+
+if ($method == 'POST') {
+    $data = array(
+        ':firstname' => $_POST['firstname'],
+    );
+
+    $query = "INSERT INTO test (firstname) VALUES (:firstname)";
+
+    $getQuery = $db->prepare($query);
+    $getQuery->execute($data);
+}
+
+if ($method == 'PUT') {
+    parse_str(file_get_contents("php://input"), $_PUT); // Whats the php://input
+
+    $data = array(
+        ':firstname' => $_PUT['firstname'],
+    );
+
+    // change test to your database
+    $query = "UPDATE test
+    SET firstname = :firstname,
+    WHERE id = :id
+    ";
+
+    $getQuery = $db->prepare($query);
+    $getQuery->execute($data);
+}
+
+if ($method == "DELETE") {
+    parse_str(file_get_contents("php://input"), $_DELETE);
+
+    $query = "DELETE FROM test WHERE id = '" . $_DELETE["id"] . "'";
+    $getQuery = $db->prepare($query);
+    $getQuery->execute($data);
+}
