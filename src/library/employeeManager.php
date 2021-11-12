@@ -46,6 +46,7 @@ if ($method == 'PUT') {
     parse_str(file_get_contents("php://input"), $_PUT); // Whats the php://input
 
     $data = array(
+        ':id' => $_PUT['id'],
         ':firstname' => $_PUT['firstname'],
     );
 

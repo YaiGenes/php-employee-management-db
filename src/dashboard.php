@@ -68,16 +68,50 @@
                     deleteConfirm: "Do you really want to delete data?",
 
                     controller: {
-                        loadData: function(test) {
+                        loadData: function(get) {
                             return $.ajax({
                                 type: "GET",
                                 url: "./library/employeeManager.php",
                                 dataType: 'json',
-                                data: test
-                            }).done(function(response) {
-                                console.log(response);
-                            })
-                        }
+                                data: get
+                            });
+                            // .done(function(response) {
+                            //     console.log(response);
+                            // })
+                        },
+                        insertItem: function(post) {
+                            return $.ajax({
+                                type: "POST",
+                                url: "./library/employeeManager.php",
+                                dataType: 'json',
+                                data: post
+                            });
+                            // .done(function(response) {
+                            //     console.log(response);
+                            // })
+                        },
+                        updateItem: function(update) {
+                            return $.ajax({
+                                type: "PUT",
+                                url: "./library/employeeManager.php",
+                                dataType: 'json',
+                                data: update
+                            });
+                            // .done(function(response) {
+                            //     console.log(response);
+                            // })
+                        },
+                        deleteItem: function(remove) {
+                            return $.ajax({
+                                type: "DELETE",
+                                url: "./library/employeeManager.php",
+                                dataType: 'json',
+                                data: remove
+                            });
+                            // .done(function(response) {
+                            //     console.log(response);
+                            // })
+                        },
                     },
                     fields: [{
                             title: "Id",
