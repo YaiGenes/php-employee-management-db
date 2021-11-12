@@ -8,51 +8,100 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Employee dashboard</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Employee dashboard</title>
 
-    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../node_modules/jsgrid/css/jsgrid.css">
-    <link rel="stylesheet" href="../node_modules/jsgrid/css/theme.css">
+  <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../node_modules/jsgrid/css/jsgrid.css">
+  <link rel="stylesheet" href="../node_modules/jsgrid/css/theme.css">
+
+  <script src="../assets/js/index.js"></script>
+  <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="../node_modules/jsgrid/src/jsgrid.core.js"></script>
+  <script src="../node_modules/jsgrid/src/jsgrid.load-indicator.js"></script>
+  <script src="../node_modules/jsgrid/src/jsgrid.load-strategies.js"></script>
+  <script src="../node_modules/jsgrid/src/jsgrid.sort-strategies.js"></script>
+  <script src="../node_modules/jsgrid/src/jsgrid.validation.js"></script>
+  <script src="../node_modules/jsgrid/src/jsgrid.field.js"></script>
+  <script src="../node_modules/jsgrid/src/fields/jsgrid.field.text.js"></script>
+  <script src="../node_modules/jsgrid/src/fields/jsgrid.field.number.js"></script>
+  <script src="../node_modules/jsgrid/src/fields/jsgrid.field.checkbox.js"></script>
+  <script src="../node_modules/jsgrid/src/fields/jsgrid.field.control.js"></script>
 </head>
 
 <body>
-    <!-- Page Wrapper -->
-    <div id="wrapper">
-        <header class="bg-light mb-4 ">
-            <?php
+  <!-- Page Wrapper -->
+  <div id="wrapper">
+    <header class="bg-light mb-4 ">
+      <?php
             require_once("../assets/html/header.html");
             ?>
-        </header>
-        <main class="container-xl mx-auto">
-            <h3>Employees:</h3>
+    </header>
+    <main class="container-xl mx-auto">
+      <h3>Employees:</h3>
 
-            <!-- Here goes the table -->
+      <!-- Here goes the table -->
 
-            <div id='grid-table'>
-            </div>
-        </main>
-        <footer class="fixed-bottom">
-            <?php
-            require("../assets/html/footer.html");
-            ?>
-        </footer>
-        <script src="../assets/js/index.js"></script>
-        <script src="../node_modules/jquery/dist/jquery.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="../node_modules/jsgrid/src/jsgrid.core.js"></script>
-        <script src="../node_modules/jsgrid/src/jsgrid.load-indicator.js"></script>
-        <script src="../node_modules/jsgrid/src/jsgrid.load-strategies.js"></script>
-        <script src="../node_modules/jsgrid/src/jsgrid.sort-strategies.js"></script>
-        <script src="../node_modules/jsgrid/src/jsgrid.validation.js"></script>
-        <script src="../node_modules/jsgrid/src/jsgrid.field.js"></script>
-        <script src="../node_modules/jsgrid/src/fields/jsgrid.field.text.js"></script>
-        <!-- <script src="../node_modules/jsgrid/src/fields/jsgrid.field.select.js"></script> -->
-        <script src="../node_modules/jsgrid/src/fields/jsgrid.field.number.js"></script>
-        <script src="../node_modules/jsgrid/src/fields/jsgrid.field.checkbox.js"></script>
-        <script src="../node_modules/jsgrid/src/fields/jsgrid.field.control.js"></script>
+      <div id='grid-table'>
+      </div>
+    </main>
+    <footer class="fixed-bottom">
+      <?php
+        require("../assets/html/footer.html");
+    ?>
+    </footer>
+
+
+    <script>
+    $(document).ready(function() {
+      $("#grid-table").jsGrid({
+
+        width: "100%",
+        height: "600px",
+
+        filtering: true,
+        inserting: true,
+        editing: true,
+        sorting: true,
+        paging: true,
+        autoload: true,
+        pageSize: 10,
+        pageButtonCount: 5,
+        deleteConfirm: "Do you really want to delete data?",
+
+        controller: {
+          loadData: function(filter) {
+            return $.ajax({
+              type: "GET",
+              url: "./library/employeeManager.php",
+              data: filter
+            });
+          }
+        },
+        fields: [{
+            title: "Id",
+            name: "id",
+            type: "hidden",
+            css: 'hide'
+          },
+          {
+            title: "First Name",
+            name: "firstname",
+            type: "text",
+            width: 150,
+            validate: "required"
+          },
+          {
+            type: "control"
+          }
+        ]
+
+      });
+    })
+    </script>
 
 </body>
 
@@ -60,7 +109,8 @@
 
 
 <!-- SQL Table script-->
-<script>
+
+<!-- <script>
     $("#grid-table").jsGrid({
 
         width: "100%",
@@ -166,4 +216,4 @@
         ]
 
     });
-</script>
+</script> -->

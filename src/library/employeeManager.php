@@ -1,48 +1,33 @@
 <?php
 
-/**
- * EMPLOYEE FUNCTIONS LIBRARY
- *
- * @author: Jose Manuel Orts
- * @date: 11/06/2020
- */
+//require_once('../sql/dbh.php');
 
-function addEmployee(array $newEmployee)
-{
-    // TODO implement it
+$dsn = "mysql:host=".$_SERVER["SERVER_NAME"].";dbname=employeeMngmt";
+$dbusername ="root";
+$dbpassword = "";
+
+$db = new PDO($dsn, $dbusername, $dbpassword);
+
+$method = $_SERVER['REQUEST_METHOD'];
+
+if ($method=='GET') {
+$data = array(
+    ':firstname' => "%" . $GET_['firstname'] . "%"
+);
+
+$query = "SELECT * FROM test WHERE firstname LIKE :firstname ORDER BY id DESC";
+
+$getQuery = $db->prepare($query);
+$getQuery->execute($data);
+$result = $getQuery->fetchAll();
+
+foreach ($result as $row) {
+    $output[] = array(
+        'id'=>$row['id'],
+        'firstname'=>$row['firstname']
+    )
 }
 
-
-function deleteEmployee(string $id)
-{
-    // TODO implement it
-}
-
-
-function updateEmployee(array $updateEmployee)
-{
-    // TODO implement it
-}
-
-
-function getEmployee(string $id)
-{
-    // TODO implement it
-}
-
-
-function removeAvatar($id)
-{
-    // TODO implement it
-}
-
-
-function getQueryStringParameters(): array
-{
-    // TODO implement it
-}
-
-function getNextIdentifier(array $employeesCollection): int
-{
-    // TODO implement it
+header("Content-Type: application/json");
+echo json_encode($output);
 }
