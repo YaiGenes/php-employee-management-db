@@ -33,9 +33,6 @@
 
             <div id='grid-table'>
             </div>
-            <div>
-                This text is below the table.
-            </div>
         </main>
         <footer class="fixed-bottom">
             <?php
