@@ -72,7 +72,7 @@
                             return $.ajax({
                                 type: "GET",
                                 url: "./library/employeeManager.php",
-                                // dataType: 'json',
+                                dataType: 'json',
                                 data: test
                             }).done(function(response) {
                                 console.log(response);
