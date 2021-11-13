@@ -25,12 +25,12 @@
             require_once("../assets/html/header.html");
             ?>
         </header>
-        <main class="container-xl mx-auto">
+        <main class="container-fluid">
             <h3>Employees:</h3>
 
             <!-- Here goes the table -->
 
-            <div id='grid-table'>
+            <div class="" id='grid-table'>
             </div>
         </main>
         <footer class="fixed-bottom">
@@ -117,13 +117,88 @@
                             title: "Id",
                             name: "id",
                             type: "",
-                            css: ''
+                            css: 'd-none'
                         },
                         {
                             title: "First Name",
-                            name: "firstname",
+                            name: "name",
                             type: "text",
-                            width: 150,
+                            // width: 150,
+                            validate: "required"
+                        },
+                        {
+                            title: "Email",
+                            name: "email",
+                            type: "text",
+                            // width: 150,
+                            validate: "required"
+                        },
+                        {
+                            title: "Sex",
+                            name: "gender",
+                            type: "text",
+                            // type: "select",
+                            // items: [{
+                            //         Name: "",
+                            //         Id: ''
+                            //     },
+                            //     {
+                            //         Name: "Male",
+                            //         Id: 'male'
+                            //     },
+                            //     {
+                            //         Name: "Female",
+                            //         Id: 'female'
+                            //     },
+                            // ],
+                            // width: 150,
+                            validate: "required"
+                        },
+                        {
+                            title: "Age",
+                            name: "age",
+                            type: "text",
+                            validate: function(value) {
+                                if (value > 18) {
+                                    return true;
+                                }
+                            }
+                            // width: 150,
+                        },
+                        {
+                            title: "Street No.",
+                            name: "street",
+                            type: "text",
+                            // width: 150,
+                            validate: "required"
+                        },
+                        {
+                            title: "City",
+                            name: "city",
+                            type: "text",
+                            // width: 150,
+                            validate: "required"
+                        },
+                        // {
+                        //     title: "State",
+                        //     name: "state",
+                        //     type: "text",
+                        //     // width: 150,
+                        //     validate: "required"
+                        // },
+                        {
+                            title: "Postal Code",
+                            name: "postalcode",
+                            type: "text",
+                            // width: 150,
+                            validate: "required"
+                        },
+                        {
+                            title: "Phone Number",
+                            name: "phone",
+                            type: "text",
+                            // type: "int",
+                            // width: 150,
                             validate: "required"
                         },
                         {
