@@ -79,39 +79,41 @@ if ($method == 'POST') {
     $getQuery->execute($data);
 }
 
-if ($method == 'PUT') {
-    parse_str(file_get_contents("php://input"), $_PUT);
-
+if ($method == 'PATCH') {
+    parse_str(file_get_contents("php://input"), $_PATCH);
+    $stor = $_PATCH;
     $data = array(
-        ':id' => $_PUT['id'],
-        ':name' => $_PUT['name'],
-        ':email' => $_PUT['email'],
-        ':gender' => $_PUT['gender'],
-        ':age' => $_PUT['age'],
-        ':street' => $_PUT['street'],
-        ':city' => $_PUT['city'],
-        ':state' => $_PUT['state'],
-        ':postalcode' => $_PUT['postalcode'],
-        ':phone' => $_PUT['phone']
+        ':id' => intval($stor['id']),
+        ':name' => $stor['name'],
+        ':email' => $stor['email'],
+        ':gender' => $stor['gender'],
+        ':age' => $stor['age'],
+        ':street' => $stor['street'],
+        ':city' => $stor['city'],
+        ':state' => $stor['state'],
+        ':postalcode' => $stor['postalcode'],
+        ':phone' => $stor['phone']
     );
+    var_dump($data);
 
     // change employee_edit_name to your database
     $query = "UPDATE employee_edit_name
     SET
-    name = :name,
-    email = :email,
-    gender = :gender,
-    age = :age,
-    street = :street,
-    city = :city,
-    state = :state,
-    postalcode = :postalcode,
-    phone = :phone
+    'name' = :name,
+    'email' = :email,
+    'gender' = :gender,
+    'age' = :age,
+    'street' = :street,
+    'city' = :city,
+    'state' = :state,
+    'postalcode' = :postalcode,
+    'phone' = :phone
     WHERE 'id' = :id
     ";
 
     $getQuery = $db->prepare($query);
     $getQuery->execute($data);
+    var_dump($getQuery);
 }
 
 if ($method == "DELETE") {

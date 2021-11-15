@@ -96,15 +96,15 @@
           updateItem: function(item) {
             console.log(item);
             return $.ajax({
-              type: "PUT",
+              type: "PATCH",
               url: "./library/employeeManager.php",
               dataType: 'json',
               data: item,
               success: function(item) {
-                console.log(item);
+                console.log("succ" + item);
               },
-              error: function(item) {
-                console.log(item);
+              error: function(request, error) {
+                console.log(error);
               }
             })
             //   .done(function(response) {
