@@ -96,7 +96,7 @@
           updateItem: function(item) {
             console.log(item);
             return $.ajax({
-              type: "PATCH",
+              type: "PUT",
               url: "./library/employeeManager.php",
               dataType: 'json',
               data: item,
@@ -105,6 +105,7 @@
               },
               error: function(request, error) {
                 console.log(error);
+                console.log(request);
               }
             })
             //   .done(function(response) {
