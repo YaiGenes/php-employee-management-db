@@ -70,14 +70,17 @@
         controller: {
           loadData: function(get) {
             return $.ajax({
-                type: "GET",
-                url: "./library/employeeManager.php",
-                dataType: 'json',
-                data: get
-              })
-              .done(function(response) {
-                console.log(response);
-              })
+              type: "GET",
+              url: "./library/employeeManager.php",
+              dataType: 'json',
+              data: get,
+              success: function(get) {
+                console.log(get);
+              },
+              error: function(get) {
+                console.log(get);
+              },
+            })
           },
           insertItem: function(post) {
             return $.ajax({
@@ -90,32 +93,20 @@
             //     console.log(response);
             // })
           },
-          updateItem: function(updatingItem) {
-            {
-              var d = $.Deferred();
-              $.ajax({
-                type: "GET",
-                url: "../../dispositivo/ajaxUpdateDispositivo",
-                data: updatingItem
-              }).success(function(response) {
-                //response gives me ""
-                d.resolve(response);
-
-              }).error(function(xhr, ajaxOptions, thrownError) {
-                //here, restore old row value
-                //previousItem doesn't exist in this point
-                d.resolve();
-              });
-
-              return d.promise();
-            }
-            // console.log(item);
-            // return $.ajax({
-            //     type: "PUT",
-            //     url: "./library/employeeManager.php",
-            //     //dataType: 'json',
-            //     data: item
-            //   })
+          updateItem: function(item) {
+            console.log(item);
+            return $.ajax({
+              type: "PUT",
+              url: "./library/employeeManager.php",
+              dataType: 'json',
+              data: item,
+              success: function(item) {
+                console.log(item);
+              },
+              error: function(item) {
+                console.log(item);
+              }
+            })
             //   .done(function(response) {
             //     console.log(response);
             //   })
@@ -231,114 +222,3 @@
 </body>
 
 </html>
-
-
-<!-- SQL Table script-->
-
-<!-- <script>
-    $("#grid-table").jsGrid({
-
-        width: "100%",
-        height: "600px",
-
-        filtering: true,
-        inserting: true,
-        editing: true,
-        sorting: true,
-        paging: true,
-        autoload: true,
-        pageSize: 10,
-        pageButtonCount: 5,
-        deleteConfirm: "Do you really want to delete data?",
-
-        controller: {
-            loadData: function(filter) {
-                return $.ajax({
-                    type: "GET",
-                    url: "fetch_data.php",
-                    data: filter
-                });
-            },
-            insertItem: function(item) {
-                return $.ajax({
-                    type: "POST",
-                    url: "fetch_data.php",
-                    data: item
-                });
-            },
-            updateItem: function(item) {
-                return $.ajax({
-                    type: "PUT",
-                    url: "fetch_data.php",
-                    data: item
-                });
-            },
-            deleteItem: function(item) {
-                return $.ajax({
-                    type: "DELETE",
-                    url: "fetch_data.php",
-                    data: item
-                });
-            },
-        },
-
-        fields: [{
-                name: "id",
-                type: "hidden",
-                css: 'hide'
-            },
-            {
-                name: "first_name",
-                type: "text",
-                width: 150,
-                validate: "required"
-            },
-            {
-                name: "last_name",
-                type: "text",
-                width: 150,
-                validate: "required"
-            },
-            {
-                name: "age",
-                type: "text",
-                width: 50,
-                validate: function(value) {
-                    if (value > 0) {
-                        return true;
-                    }
-                }
-            },
-            {
-                name: "gender",
-                type: "select",
-                items: [{
-                        Name: "",
-                        Id: ''
-                    },
-                    {
-                        Name: "Male",
-                        Id: 'male'
-                    },
-                    {
-                        Name: "Female",
-                        Id: 'female'
-                    }
-                ],
-                valueField: "Id",
-                textField: "Name",
-                validate: "required"
-            },
-            {
-                name: "address",
-                type: "text",
-                width: 150,
-                validate: "required"
-            },
-            {
-                type: "control"
-            }
-        ]
-
-    });
-</script> -->
