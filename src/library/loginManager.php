@@ -3,8 +3,9 @@ require_once("../sql/dbh.php");
 require_once("./loginController.php");
 
 
+
 $validationQuery = $db->prepare("
-SELECT `fullname`,
+SELECT `id`, `fullname`,
 `password`
 FROM `user`
 WHERE `fullname`= :fullname
@@ -17,8 +18,9 @@ $validationQuery->execute([
 
 $isSuscribed = $validationQuery->rowCount()?$validationQuery:[];
 $isSuscribed = $validationQuery->rowCount();
+$result = $validationQuery->fetchAll();
 
-echo $isSuscribed;
+$_SESSION['id'] = $result[0]['id'];
 if ($isSuscribed) {
     $_SESSION["info"]="Login process succesful";
     //$_SESSION["issuscribed"]=true;

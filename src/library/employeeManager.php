@@ -1,6 +1,7 @@
 <?php
 
 // require_once('../sql/dbh.php');
+session_start();
 
 $dsn = "mysql:host=" . $_SERVER["SERVER_NAME"] . ";dbname=employeeMngmt";
 $dbusername = "root";
@@ -20,11 +21,13 @@ if ($method == 'GET') {
         ':city' => "%" . $_GET['city'] . "%",
         ':state' => "%" . $_GET['state'] . "%",
         ':postalcode' => "%" . $_GET['postalcode'] . "%",
-        ':phone' => "%" . $_GET['phone'] . "%"
+        ':phone' => "%" . $_GET['phone'] . "%",
+        ':userId' => $_SESSION['id']
     );
 
     $query = "SELECT * FROM employee_edit_name WHERE
-    name LIKE :name
+    userId = :userId
+    AND name LIKE :name
     AND email LIKE :email
     AND gender LIKE :gender
     AND age LIKE :age
