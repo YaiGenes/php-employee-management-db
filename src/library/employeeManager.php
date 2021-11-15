@@ -74,11 +74,12 @@ if ($method == 'POST') {
         ':city' => $_POST['city'],
         ':state' => $_POST['state'],
         ':postalcode' => $_POST['postalcode'],
-        ':phone' => $_POST['phone']
+        ':phone' => $_POST['phone'],
+        ':userId' => $_SESSION['id']
     );
 
-    $query = "INSERT INTO employee_edit_name (name, email, gender, age, street, city, state, postalcode, phone)
-    VALUES (:name, :email, :gender, :age, :street, :city, :state, :postalcode, :phone)";
+    $query = "INSERT INTO employee_edit_name (name, email, gender, age, street, city, state, postalcode, phone, userId)
+    VALUES (:name, :email, :gender, :age, :street, :city, :state, :postalcode, :phone, :userId)";
 
     $getQuery = $db->prepare($query);
     $getQuery->execute($data);
@@ -114,60 +115,14 @@ if ($method == 'PUT') {
     phone = :phone
     WHERE id = :id
     ";
-    
-    
     $getQuery = $db->prepare($query);
     $getQuery->execute($data);
-    
     var_dump($getQuery);
 }
 
 if ($method == "DELETE") {
     parse_str(file_get_contents("php://input"), $_DELETE);
-    
     $query = "DELETE FROM employee_edit_name WHERE id = '" . $_DELETE["id"] . "'";
     $getQuery = $db->prepare($query);
     $getQuery->execute($data);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// $getQuery->bindParam(1, $test['name'], PDO::PARAM_STR);
-// $getQuery->bindParam(2, $test['email'], PDO::PARAM_STR);
-// $getQuery->bindParam(3, $test['gender'], PDO::PARAM_STR);
-// $getQuery->bindParam(4, $test['city'], PDO::PARAM_STR);
-// $getQuery->bindParam(5, $test['street'], PDO::PARAM_STR);
-// $getQuery->bindParam(6, $test['state'], PDO::PARAM_STR);
-// $getQuery->bindParam(7, $test['age'], PDO::PARAM_STR);
-// $getQuery->bindParam(8, $test['postalcode'], PDO::PARAM_STR);
-// $getQuery->bindParam(9, $test['phone'], PDO::PARAM_STR);
-// $getQuery->bindParam(10, $test['id'], PDO::PARAM_INT);
-
-
-// $query = "UPDATE 'employee_edit_name' 
-// SET 'name'=?,
-// 'email'= ?,
-// 'gender'= ?,
-// 'city'= ?,
-// 'street'= ?,
-// 'state'= ?,
-// 'age'= ?,
-// 'postalcode'= ?,
-// 'phone'= ?,
-// WHERE 'id' = ?;
-// ";
