@@ -59,6 +59,9 @@ if ($method == 'GET') {
 }
 
 if ($method == 'POST') {
+
+    var_dump($_POST);
+
     $data = array(
         ':name' => $_POST['name'],
         ':email' => $_POST['email'],
@@ -71,9 +74,8 @@ if ($method == 'POST') {
         ':phone' => $_POST['phone']
     );
 
-    $query = "INSERT INTO employee_edit_name 
-    (name, email, gender, age, street, city, postalcode, phone) 
-    VALUES (:name, :email, :gender, :age, :street, :city, :postalcode, :phone)";
+    $query = "INSERT INTO employee_edit_name (name, email, gender, age, street, city, state, postalcode, phone)
+    VALUES (:name, :email, :gender, :age, :street, :city, :state, :postalcode, :phone)";
 
     $getQuery = $db->prepare($query);
     $getQuery->execute($data);

@@ -101,27 +101,28 @@
               dataType: 'json',
               data: item,
               success: function(item) {
-                console.log("succ" + item);
+                console.log(item);
               },
               error: function(request, error) {
                 console.log(error);
                 console.log(request);
               }
             })
-            //   .done(function(response) {
-            //     console.log(response);
-            //   })
           },
-          deleteItem: function(remove) {
+          deleteItem: function(item) {
             return $.ajax({
               type: "DELETE",
               url: "./library/employeeManager.php",
               dataType: 'json',
-              data: remove
+              data: item,
+              success: function(item) {
+                console.log(item);
+              },
+              error: function(request, error) {
+                console.log(error);
+                console.log(request);
+              }
             });
-            // .done(function(response) {
-            //     console.log(response);
-            // })
           },
         },
         fields: [{
@@ -137,6 +138,13 @@
             // width: 150,
             validate: "required"
           },
+          //   {
+          //     title: "Last Name",
+          //     name: "lastname",
+          //     type: "text",
+          //     // width: 150,
+          //     validate: "required"
+          //   },
           {
             title: "Email",
             name: "email",
