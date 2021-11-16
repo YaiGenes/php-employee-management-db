@@ -1,32 +1,64 @@
-# PHP BASIC APPLICATION TO MANAGE AN EMPLOYEES LIST
+<br />
 
-## Application main points
+# PHP + SQL - EMPLOYEES MANAGEMENT WEB
 
-1. Login and logout using a simple SQL connection.
-2. Controlled user session set to 10 minutes
-3. Show data from a JSON in a JS Grid
-4. Pagination of the data configured by the grid
-5. Employees CRUD Create Read Delete and Update with a json file as employees storage
+<a href='https://www.linkpicture.com/view.php?img=LPic61937e5f3bfa41796950944'><img src='https://www.linkpicture.com/q/undraw_faq_re_31cw.svg' type='image'></a>
+
+🛠 Built by Yaigenes and Jose1i1o.
+
+## <a href='https://www.linkpicture.com/view.php?img=LPic61937e5f3bfa41796950944'><img src='https://www.linkpicture.com/q/user-experience.svg' type='image' width="40"></a> UX View
+
+<b>1. Login Page</b>
+
+<a href='https://www.linkpicture.com/view.php?img=LPic6193799259011936892492'><img src='https://www.linkpicture.com/q/screencapture-localhost-employee-php-employee-management-db-2021-11-16-10_25_39.png' width="850" type='image'></a>
+<br />
+<br />
+<b>2. Dashboard</b>
+
+<a href='https://www.linkpicture.com/view.php?img=LPic61937a5bcb4d71451811316'><img src='https://www.linkpicture.com/q/MicrosoftTeams-image.png' width="850" type='image'></a>
+<br />
+<br />
+<b>3. Employee insert type</b>
+
+<a href='https://www.linkpicture.com/view.php?img=LPic6193799259011936892492'><img src='https://www.linkpicture.com/q/screencapture-localhost-employee-php-employee-management-db-src-employee-php-2021-11-16-10_26_03.png' width="850" type='image'></a>
+<br />
+<br />
+
+## Table of contents
+
+1. Login and logout using a simple MySQL connection.
+2. Controlled user session set to 150 seconds.
+3. Show data from our SQL database.
+4. Pagination of the data configured by the grid.
+5. Employees CRUD Create Read Delete and Update connected with database.
 6. Employee page with employee detail
-7. External web service to get employees images
-8. Employee avatar through web service images
 
-### File structure
-
-This file structure has a specific purpose. So you have to implement all the required over it. Later when we get to OPP and MySQL we will refactor the project to get it more sophisticated, modern and cleaner. Please take care of it!!
-
-```
-assets/
-resources/
-src/
- /library
-```
+## Introduction
 
 - Assets contains html, css, js & images
 - Css just css files.
-- Resources folder contains users.json and employees.json
 - Src folder contains PHP files which contain HTML or JS
 - Src/library folder contains PHP files that contain just PHP
+
+## <a href='https://www.linkpicture.com/view.php?img=LPic61937e5f3bfa41796950944'><img src='https://www.linkpicture.com/q/undraw_scrum_board_re_wk7v.svg' type='image' width="100"></a> Proyect Management
+
+<b>1. Project tasks in Asana</b>
+
+<a href='https://www.linkpicture.com/view.php?img=LPic61937be9ac8c4950157202'><img src='https://www.linkpicture.com/q/screencapture-app-asana-0-1201353863275907-board-2021-11-14-22_29_25.png' width="850" type='image'></a>
+
+<b>2. Project dependencies</b>
+
+Tasks were subdivided in multiple tasks, which can not been seen here, but were both Yaiser and Jose where working on <b>peer-coding</b> sessions.
+
+<a href='https://www.linkpicture.com/view.php?img=LPic61937cf1a23b01089875134'><img src='https://www.linkpicture.com/q/MicrosoftTeams-image-3_10.png' width="850" type='image'></a>
+
+<b>3. Project status by deadline day</b>
+
+<a href='https://www.linkpicture.com/view.php?img=LPic61937be9ac8c4950157202'><img src='https://www.linkpicture.com/q/screencapture-app-asana-0-1201353863275907-board-2021-11-16-10_34_36.png' width="850" type='image'></a>
+
+<b>4. MySQL database </b>
+
+<a href='https://www.linkpicture.com/view.php?img=LPic61937cf1a23b01089875134'><img src='https://www.linkpicture.com/q/MicrosoftTeams-image-2_11.png' width="850" type='image'></a>
 
 **We left to you the project files in their folders to give you a structure which we want you to work with in order to later refactor it.**
 
