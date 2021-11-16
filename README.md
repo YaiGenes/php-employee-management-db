@@ -2,7 +2,7 @@
 
 ## Application main points
 
-1. Login and logout with a json file as user storage
+1. Login and logout using a simple SQL connection.
 2. Controlled user session set to 10 minutes
 3. Show data from a JSON in a JS Grid
 4. Pagination of the data configured by the grid
