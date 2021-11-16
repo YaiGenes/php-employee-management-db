@@ -1,14 +1,27 @@
 <?php
 require_once('./loginManager.php');
 
+session_start();
+
+
 function destroySession()
 {
     session_destroy();
     header('Location: ./index.php');
 }
 
+function checkExpired()
+{
+    if (isset($_SESSION['timeout'])) {
+        $sessionTime = time() - $_SESSION['timeout'];
+        if ($sessionTime > 150) {
+            logOut();
+        }
+    }
+}
+
 function sessionTime()
 {
-    set_time_limit(15);
+    $_SESSION['timeout'] = time();
     header('Location: ../dashboard.php');
 }
