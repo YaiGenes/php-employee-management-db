@@ -1,15 +1,11 @@
 <?php
+//Import $db setting to prepare the request for the database
+require_once('../sql/dbh.php');
+
+//Session to get the user id passed from login page
 session_start();
 
-$dsn = "mysql:host=" . $_SERVER["SERVER_NAME"] . ";dbname=employeeMngmt";
-$dbusername = "root";
-$dbpassword = "";
-
-$db = new PDO($dsn, $dbusername, $dbpassword);
-
-var_dump($_POST);
-echo '<br/>';
-
+//Getting values generated from the employee form
 $name = $_POST["name"];
 $name = $_POST["lastName"];
 $email = $_POST["email"];
@@ -22,7 +18,9 @@ $streetAddress = $_POST["streetAddress"];
 $age = $_POST["age"];
 $phoneNumber = $_POST["phoneNumber"];
 
-$data = array(
+
+//Storing values into an array of objects to make a further bind process
+$data = [
     ':name' => $name,
     ':lastname' => $lastName,
     ':email' => $email,
@@ -34,12 +32,15 @@ $data = array(
     ':postalcode' => $postCode,
     ':phone' => $phoneNumber,
     ':userId' => $_SESSION['id']
-);
+];
 
+//Prepare the SQL call
 $query = "INSERT INTO employee_edit_name (name, lastname, email, gender, age, street, city, state, postalcode, phone, userId)
     VALUES (:name, :lastname, :email, :gender, :age, :street, :city, :state, :postalcode, :phone, :userId)";
 
+//Preparing and executing the PDO statement to post the data into the database
 $getQuery = $db->prepare($query);
 $getQuery->execute($data);
 
+//Redirecting to dashboard page after new employee post
 header("Location: ../dashboard.php");

@@ -28,9 +28,11 @@ session_start();
     <img class="mb-4" src="./node_modules/bootstrap-icons/icons/box-arrow-in-right.svg" alt="" width="80" height="80" />
     <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
     <label for="inputName" class="sr-only">User Name</label>
-    <input type="text" id="inputName" name="username" class="form-control mb-2" placeholder="Enter your full name" required autofocus="" />
+    <input type="text" id="inputName" name="username" class="form-control mb-2" placeholder="Enter your full name"
+      required autofocus="" />
     <label for="inputPass" class="sr-only">Password</label>
-    <input type="password" id="inputPass" name="pass" class="form-control" placeholder="Enter your Password." required />
+    <input type="password" id="inputPass" name="pass" class="form-control" placeholder="Enter your Password."
+      required />
     <button class="btn btn-lg btn-primary btn-block" type="submit" name="login">
       Sign in
     </button>

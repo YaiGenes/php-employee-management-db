@@ -1,8 +1,3 @@
-</div>
-<?php
-
-
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -39,8 +34,11 @@
             ?>
     </footer>
 
+    <!-- jQuery and ajax Library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="../assets/js/index.js"></script>
+    <!-- <script src="../assets/js/index.js"></script> -->
+
+    <!-- jsGrid Library -->
     <script src="../node_modules/jsgrid/src/jsgrid.core.js"></script>
     <script src="../node_modules/jsgrid/src/jsgrid.load-indicator.js"></script>
     <script src="../node_modules/jsgrid/src/jsgrid.load-strategies.js"></script>
@@ -89,9 +87,6 @@
               dataType: 'json',
               data: post
             });
-            // .done(function(response) {
-            //     console.log(response);
-            // })
           },
           updateItem: function(item) {
             console.log(item);

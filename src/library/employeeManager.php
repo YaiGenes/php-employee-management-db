@@ -1,18 +1,16 @@
 <?php
-
-// require_once('../sql/dbh.php');
+//Import $db setting to prepare the request for the database
+require_once('../sql/dbh.php');
+//Session to get the user id passed from login page
 session_start();
 
-$dsn = "mysql:host=" . $_SERVER["SERVER_NAME"] . ";dbname=employeeMngmt";
-$dbusername = "root";
-$dbpassword = "";
-
-$db = new PDO($dsn, $dbusername, $dbpassword);
-
+//Getting the method request from the ajax call in the dashboard page
 $method = $_SERVER['REQUEST_METHOD'];
 
+//Getting values generated from the ajax get method
 if ($method == 'GET') {
-    $data = array(
+    //Storing values into an array of objects to make a further bind process
+    $data = [
         ':name' => "%" . $_GET['name'] . "%",
         ':email' => "%" . $_GET['email'] . "%",
         ':gender' => "%" . $_GET['gender'] . "%",
@@ -23,8 +21,9 @@ if ($method == 'GET') {
         ':postalcode' => "%" . $_GET['postalcode'] . "%",
         ':phone' => "%" . $_GET['phone'] . "%",
         ':userId' => $_SESSION['id']
-    );
+    ];
 
+    //Prepare the SQL call
     $query = "SELECT * FROM employee_edit_name WHERE
     userId = :userId
     AND name LIKE :name
@@ -39,10 +38,12 @@ if ($method == 'GET') {
     ORDER BY id DESC
     ";
 
+    //Preparing and executing the PDO statement to fetch the data into the database
     $getQuery = $db->prepare($query);
     $getQuery->execute($data);
     $result = $getQuery->fetchAll();
 
+    //Printing the data into the dashboard table
     foreach ($result as $row) {
         $output[] = array(
             'id' => intval($row['id']),
@@ -57,15 +58,15 @@ if ($method == 'GET') {
             'phone' => $row['phone']
         );
     }
+
     header("Content-Type: application/json");
     echo json_encode($output);
 }
 
+//Getting values generated from the ajax post method
 if ($method == 'POST') {
-
-    var_dump($_POST);
-
-    $data = array(
+    //Storing values into an array of objects to make a further bind process
+    $data = [
         ':name' => $_POST['name'],
         ':email' => $_POST['email'],
         ':gender' => $_POST['gender'],
@@ -76,16 +77,20 @@ if ($method == 'POST') {
         ':postalcode' => $_POST['postalcode'],
         ':phone' => $_POST['phone'],
         ':userId' => $_SESSION['id']
-    );
+    ];
 
+    //Prepare the SQL call
     $query = "INSERT INTO employee_edit_name (name, email, gender, age, street, city, state, postalcode, phone, userId)
     VALUES (:name, :email, :gender, :age, :street, :city, :state, :postalcode, :phone, :userId)";
 
+    //Preparing and executing the PDO statement to post the data into the database
     $getQuery = $db->prepare($query);
     $getQuery->execute($data);
 }
 
+//Getting values generated from the ajax put method
 if ($method == 'PUT') {
+    //Storing values into an array of objects to make a further bind process
     parse_str(file_get_contents("php://input"), $_PUT);
     $stor = $_PUT;
     $data = [
@@ -100,8 +105,7 @@ if ($method == 'PUT') {
         ':postalcode' => $stor['postalcode'],
         ':phone' => $stor['phone']
     ];
-    
-    // change employee_edit_name to your database
+    //Prepare the SQL call
     $query = "UPDATE employee_edit_name
     SET
     name = :name,
@@ -115,14 +119,19 @@ if ($method == 'PUT') {
     phone = :phone
     WHERE id = :id
     ";
+    //Preparing and executing the PDO statement to post the data into the database
     $getQuery = $db->prepare($query);
     $getQuery->execute($data);
-    var_dump($getQuery);
 }
 
+//Getting values generated from the ajax delete method
 if ($method == "DELETE") {
     parse_str(file_get_contents("php://input"), $_DELETE);
-    $query = "DELETE FROM employee_edit_name WHERE id = '" . $_DELETE["id"] . "'";
+    //Storing value into an array of objects to make a further bind process
+    $data = [':id' => $_DELETE["id"]];
+    //Prepare the SQL call
+    $query = "DELETE FROM employee_edit_name WHERE id = :id";
+    //Preparing and executing the PDO statement to delete the data into the database
     $getQuery = $db->prepare($query);
     $getQuery->execute($data);
 }

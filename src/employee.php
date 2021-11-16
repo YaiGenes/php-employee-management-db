@@ -18,6 +18,7 @@
     <?php require_once("../assets/html/header.html"); ?>
   </header>
   <main class="container-xl mx-auto pb-90">
+    <!-- Employee Form -->
     <form action="./library/employeeController.php?update=true" method="POST" class="container-md">
       <h3>Employee: </h3>
       <div class="row">
@@ -81,7 +82,6 @@
         require_once("../assets/html/footer.html");
     ?>
   </footer>
-  <!-- <script src="../assets/js/index.js"></script> -->
 </body>
 
 </html>

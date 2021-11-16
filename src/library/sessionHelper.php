@@ -1,6 +1,4 @@
 <?php
-require_once('./loginManager.php');
-
 function destroySession()
 {
     session_destroy();
