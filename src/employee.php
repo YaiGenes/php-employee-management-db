@@ -9,7 +9,7 @@
   <title>Employee Management</title>
 
   <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
-  <link href="../assets/css/main.css" rel="stylesheet" />
+  <link href="../assets/css/layout.css" rel="stylesheet" />
   <script src="../node_modules/jquery/dist/jquery.min.js"></script>
 </head>
 

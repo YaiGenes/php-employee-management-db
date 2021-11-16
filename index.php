@@ -14,7 +14,7 @@ session_start();
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Employee Management</title>
   <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css" />
-  <link href="./assets/css/index.css" rel="stylesheet" />
+  <link href="./assets/css/layout.css" rel="stylesheet" />
   <script src="./node_modules/jquery/dist/jquery.min.js"></script>
   <!-- AJAX script -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
